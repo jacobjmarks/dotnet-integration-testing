@@ -8,7 +8,7 @@ on:
 
 env:
   WORKING_DIRECTORY: Azenix.Examples.IntegrationTesting.Net60
-  DOTNET_VERSION: 6x
+  DOTNET_VERSION: 6.x
 
 jobs:
   build-test:
