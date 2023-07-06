@@ -2,29 +2,31 @@ name: Build and Test
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
-
-env:
-  WORKING_DIRECTORY: Azenix.Examples.IntegrationTesting.Net60
-  DOTNET_VERSION: 6.x
+    branches: ["main"]
 
 jobs:
   build-test:
+    strategy:
+      matrix:
+        working_directory:
+          - Azenix.Examples.IntegrationTesting.Net60
+          - Azenix.Examples.IntegrationTesting.Net70
+          - Azenix.Examples.IntegrationTesting.Net80
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: ${{ env.DOTNET_VERSION }}
-    - name: Restore dependencies
-      working-directory: ${{ env.WORKING_DIRECTORY }}
-      run: dotnet restore
-    - name: Build
-      working-directory: ${{ env.WORKING_DIRECTORY }}
-      run: dotnet build --no-restore
-    - name: Test
-      working-directory: ${{ env.WORKING_DIRECTORY }}
-      run: dotnet test --no-build --verbosity normal
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          global-json-file: ${{ matrix.working_directory }}/global.json
+      - name: Restore dependencies
+        working-directory: ${{ matrix.working_directory }}
+        run: dotnet restore
+      - name: Build
+        working-directory: ${{ matrix.working_directory }}
+        run: dotnet build --no-restore
+      - name: Test
+        working-directory: ${{ matrix.working_directory }}
+        run: dotnet test --no-build --verbosity normal
