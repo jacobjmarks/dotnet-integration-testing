@@ -1,9 +1,10 @@
-namespace sa_rest_api_integration_test;
+namespace Azenix.Examples.IntegrationTesting.Api.Tests;
 
 public class UnitTest1
 {
     [Fact]
     public void Test1()
     {
+
     }
 }
