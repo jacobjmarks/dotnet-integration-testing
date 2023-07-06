@@ -5,8 +5,17 @@
 This project is intended to consolidate the past lessons-learned and knowledge around integration testing applications under different contexts.
 By having reference projects, new client engagements can be kick-started much more effectively by re-using applicable integration test setups in this repository.
 
+The scope of reference examples to be created:
+- A CRUD REST API with no external dependencies
+- A CRUD REST API with an external API dependency
+- A CRUD REST API involving the use of CosmosDB
+- A CRUD REST API involving the use of Entity Framework
+- A CRUD REST API involving the use of Azure SQL DB
+- An Azure Function
+
 (07/07/2023)
-Further development looks at the development of a framework (in the form of a NuGet package or otherwise) to make usage of the code easier.
+Further work looks at the development of a framework (in the form of a NuGet package or otherwise) to make usage of the code easier.
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
