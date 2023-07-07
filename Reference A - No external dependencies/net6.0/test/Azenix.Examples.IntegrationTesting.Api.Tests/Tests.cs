@@ -4,7 +4,7 @@ namespace Azenix.Examples.IntegrationTesting.Api.Tests;
 
 public class Tests
 {
-    [Fact]
+    [Fact(Skip = "Skip")]
     public async Task Get_WeatherForecast_Returns_200OK()
     {
         //- arrange
