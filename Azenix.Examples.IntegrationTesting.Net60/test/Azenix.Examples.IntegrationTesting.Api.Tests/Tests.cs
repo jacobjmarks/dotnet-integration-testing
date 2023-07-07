@@ -1,11 +1,11 @@
 using System.Net;
 
-namespace Azenix.Examples.IntegrationTesting.Api.Tests.Controllers;
+namespace Azenix.Examples.IntegrationTesting.Api.Tests;
 
-public class WeatherForecastControllerTests
+public class Tests
 {
     [Fact]
-    public async Task Test()
+    public async Task Get_WeatherForecast_Returns_200OK()
     {
         //- arrange
         using var factory = new MyWebApplicationFactory();
