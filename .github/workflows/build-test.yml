@@ -11,23 +11,25 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        working_directory:
-          - Azenix.Examples.IntegrationTesting.Net60
-          - Azenix.Examples.IntegrationTesting.Net70
-          - Azenix.Examples.IntegrationTesting.Net80
+        folder:
+          - Reference A - No external dependencies
+        subfolder:
+          - net6.0
+          - net7.0
+          - net8.0
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          global-json-file: ${{ matrix.working_directory }}/global.json
+          global-json-file: ${{ matrix.folder }}/${{ matrix.subfolder }}/global.json
       - name: Restore dependencies
-        working-directory: ${{ matrix.working_directory }}
+        working-directory: ${{ matrix.folder }}/${{ matrix.subfolder }}
         run: dotnet restore
       - name: Build
-        working-directory: ${{ matrix.working_directory }}
+        working-directory: ${{ matrix.folder }}/${{ matrix.subfolder }}
         run: dotnet build --no-restore
       - name: Test
-        working-directory: ${{ matrix.working_directory }}
+        working-directory: ${{ matrix.folder }}/${{ matrix.subfolder }}
         run: dotnet test --no-build --verbosity normal
