@@ -9,7 +9,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace Azenix.Examples.IntegrationTesting.Api.Tests;
 
-public class MyWebApplicationFactory : WebApplicationFactory<Program>
+public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
     protected override IHost CreateHost(IHostBuilder builder)
     {

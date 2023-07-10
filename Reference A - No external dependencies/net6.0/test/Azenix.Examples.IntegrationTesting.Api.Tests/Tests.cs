@@ -8,7 +8,7 @@ public class Tests
     public async Task Get_WeatherForecast_Returns_200OK()
     {
         //- arrange
-        using var factory = new MyWebApplicationFactory();
+        using var factory = new CustomWebApplicationFactory();
         using var client = factory.CreateClient();
 
         //- act
