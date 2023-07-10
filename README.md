@@ -1,34 +1,27 @@
-﻿<!-- ABOUT THE PROJECT -->
-# Solution Accelerators, Integration Testing
-## About The Project
+﻿# Solution Accelerator: .NET Integration Testing
 
-This project is intended to consolidate the past lessons-learned and knowledge around integration testing applications under different contexts.
-By having reference projects, new client engagements can be kick-started much more effectively by re-using applicable integration test setups in this repository.
+This repository houses a collection of reference solutions with the intent of demonstrating how to author integration tests against a .NET HTTP API which may utilise a range of external dependencies.
 
-The scope of reference examples to be created:
-- A CRUD REST API with no external dependencies
-- A CRUD REST API with an external API dependency
-- A CRUD REST API involving the use of CosmosDB
-- A CRUD REST API involving the use of Entity Framework
-- A CRUD REST API involving the use of Azure SQL DB
-- An Azure Function
+Each reference provides an example of how to manage a particular external dependency during integration testing &mdash; discussing recommendations and considerations &mdash; in .NET SDKs 6, 7 and 8 where applicable.
 
-(07/07/2023)
-Further work looks at the development of a framework (in the form of a NuGet package or otherwise) to make usage of the code easier.
+Solutions follow guidance as documented in [Integration tests in ASP.NET Core | Microsoft Learn](https://learn.microsoft.com/en-au/aspnet/core/test/integration-tests).
 
-<!-- GETTING STARTED -->
-## Getting Started
+## Common Dependencies
 
-Each solution targets a major version of .NET X.X individually, with minor differences made only to accomodate any breaking changes between the versions.
-It is important to note that the focus is on testing -- the application itself only serves as practical example for how the testing setups should work.
+All solutions utilise the following dependencies:
 
-### Prerequisites
+- [xUnit](https://github.com/xunit/xunit)
 
-(07/07/2023) TODO: Until the other examples involving external dependencies are setup,
-there are no prerequisites to run this project, all you need to do is F5 and run.
+- [Moq](https://github.com/moq/moq)
 
+- [FluentAssertions](https://github.com/fluentassertions/fluentassertions)
 
-<!-- USAGE EXAMPLES -->
-## Usage (TODO)
+- [Snapshooter](https://github.com/SwissLife-OSS/snapshooter)
 
-TODO: Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+## Solutions
+
+### Reference A - No external dependencies
+
+Integration testing a .NET HTTP API which does not utilise any external dependencies.
+
+This project can be considered a base template for all other reference solutions.
