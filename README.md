@@ -20,7 +20,7 @@ All solutions utilise the following dependencies:
 
 ## Solutions
 
-### Reference A - No external dependencies
+### [Reference A - No external dependencies](<./Reference A - No external dependencies>)
 
 Integration testing a .NET HTTP API which does not utilise any external dependencies.
 
