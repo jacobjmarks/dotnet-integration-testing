@@ -33,3 +33,5 @@ jobs:
       - name: Test
         working-directory: ${{ matrix.folder }}/${{ matrix.subfolder }}
         run: dotnet test --no-build --verbosity normal
+        env:
+          SNAPSHOOTER_STRICT_MODE: true
