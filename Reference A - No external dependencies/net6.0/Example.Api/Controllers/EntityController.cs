@@ -1,8 +1,8 @@
-﻿using Azenix.Examples.IntegrationTesting.Api.Models;
-using Azenix.Examples.IntegrationTesting.Api.Services;
+﻿using Example.Api.Models;
+using Example.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Azenix.Examples.IntegrationTesting.Api.Controllers;
+namespace Example.Api.Controllers;
 
 [ApiController]
 [Route("entities")]

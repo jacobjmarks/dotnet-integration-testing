@@ -1,4 +1,4 @@
-﻿namespace Azenix.Examples.IntegrationTesting.Api.Models;
+﻿namespace Example.Api.Models;
 
 public record class Entity
 {

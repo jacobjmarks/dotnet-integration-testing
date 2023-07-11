@@ -1,4 +1,4 @@
-namespace Azenix.Examples.IntegrationTesting.Api.Services;
+namespace Example.Api.Services;
 
 public interface ITimeProvider
 {

@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace Azenix.Examples.IntegrationTesting.Api.Tests;
+namespace Example.Api.Tests;
 
 public class Tests
 {

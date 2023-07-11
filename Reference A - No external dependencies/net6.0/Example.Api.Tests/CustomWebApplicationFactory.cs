@@ -1,4 +1,4 @@
-using Azenix.Examples.IntegrationTesting.Api.Services;
+using Example.Api.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 
-namespace Azenix.Examples.IntegrationTesting.Api.Tests;
+namespace Example.Api.Tests;
 
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
