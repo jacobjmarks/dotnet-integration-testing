@@ -1,5 +1,6 @@
 using Example.Api.Services;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,11 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
         // configure your test services
         builder.ConfigureTestServices(services =>
         {
+            services.Configure<JsonOptions>(options =>
+            {
+                options.JsonSerializerOptions.WriteIndented = true;
+            });
+
             var mockTimeProvider = new Mock<ITimeProvider>();
             mockTimeProvider.SetupGet(p => p.UtcNow).Returns(DateTimeOffset.Parse("2023-07-06T03:07:00.000Z"));
 
