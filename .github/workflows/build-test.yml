@@ -13,27 +13,25 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        folder:
-          - Reference A - No external dependencies
-        subfolder:
-          - net6.0
-          - net7.0
-          - net8.0
+        solution_folder:
+          - Reference A - No external dependencies/net6.0
+          - Reference A - No external dependencies/net7.0
+          - Reference A - No external dependencies/net8.0
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          global-json-file: ${{ matrix.folder }}/${{ matrix.subfolder }}/global.json
+          global-json-file: ${{ matrix.solution_folder }}/global.json
       - name: Restore dependencies
-        working-directory: ${{ matrix.folder }}/${{ matrix.subfolder }}
+        working-directory: ${{ matrix.solution_folder }}
         run: dotnet restore
       - name: Build
-        working-directory: ${{ matrix.folder }}/${{ matrix.subfolder }}
+        working-directory: ${{ matrix.solution_folder }}
         run: dotnet build --no-restore
       - name: Test
-        working-directory: ${{ matrix.folder }}/${{ matrix.subfolder }}
+        working-directory: ${{ matrix.solution_folder }}
         run: dotnet test --no-build --verbosity normal
         env:
           SNAPSHOOTER_STRICT_MODE: true
