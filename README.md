@@ -25,3 +25,7 @@ All solutions utilise the following dependencies:
 Integration testing a .NET HTTP API which does not utilise any external dependencies.
 
 This project can be considered a base template for all other reference solutions.
+
+### [Reference B - Entity Framework Core](<./Reference B - Entity Framework Core>)
+
+Integration testing a .NET HTTP API which utilises Entity Framework Core.
