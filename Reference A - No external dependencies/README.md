@@ -26,11 +26,14 @@ public interface ITimeProvider
 This service, registered via Dependency Injection, allows our test framework to use a custom implementation to stabilise the value. As below:
 
 ``` csharp
-var mockTimeProvider = new Mock<ITimeProvider>();
-mockTimeProvider.SetupGet(p => p.UtcNow).Returns(DateTimeOffset.Parse("2023-07-06T03:07:00.000Z"));
+builder.ConfigureTestServices(services =>
+{
+    var mockTimeProvider = new Mock<ITimeProvider>();
+    mockTimeProvider.SetupGet(p => p.UtcNow).Returns(DateTimeOffset.Parse("2023-07-06T03:07:00.000Z"));
 
-services.RemoveAll<ITimeProvider>();
-services.AddSingleton(mockTimeProvider.Object);
+    services.RemoveAll<ITimeProvider>();
+    services.AddSingleton(mockTimeProvider.Object);
+});
 ```
 
 <sup>[Example.Api.Tests/CustomWebApplicationFactory.cs](./net6.0/Example.Api.Tests/CustomWebApplicationFactory.cs)</sup>
