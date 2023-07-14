@@ -4,6 +4,20 @@ This repository houses a collection of reference solutions with the intent of de
 
 Each reference provides an example of how to manage a particular external dependency during integration testing &mdash; discussing recommendations and considerations &mdash; in .NET SDKs 6, 7 and 8 where applicable.
 
+## Philosophy
+
+### Black-box
+
+Tests should be largely [black-box](https://en.wikipedia.org/wiki/Black-box_testing) in nature, and aim to push the boundaries of that box as far as possible. There should be as little mocking, stubbing and faking as possible (with the exception of external dependencies) to test the system under test in a production-like state.
+
+### Idempotent
+
+Tests should not produce any internal or external side-effects, and should reliably produce the same result when executed against an unmodified system under test.
+
+### Isolated
+
+Tests should be able to be run in parallel with no fear of state contamination. They should not utilise any resources they did not create, and should suitably cleanup any resources which they did.
+
 ## Approach
 
 ### `WebApplicationFactory`
