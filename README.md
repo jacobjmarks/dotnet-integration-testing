@@ -18,6 +18,10 @@ Tests should not produce any internal or external side-effects, and should relia
 
 Tests should be able to be run in parallel with no fear of state contamination. They should not utilise any resources they did not create, and should suitably cleanup any resources which they did.
 
+### Effortless
+
+Developers should have no trouble authoring, configuring and running the entirety of the test suite. There should be little to no prerequisite developer dependencies &mdash; other than a suitable .NET SDK &mdash; and the test suite should be able to be easily run in a CI/CD environment.
+
 ## Approach
 
 ### `WebApplicationFactory`
