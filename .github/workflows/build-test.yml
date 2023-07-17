@@ -18,6 +18,7 @@ jobs:
           - Reference A - No external dependencies/net7.0
           - Reference A - No external dependencies/net8.0
           - Reference B - Entity Framework Core/net6.0
+          - Reference C - External HTTP API/net6.0
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

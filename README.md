@@ -1,4 +1,4 @@
-﻿# Solution Accelerator: .NET Integration Testing
+# Solution Accelerator: .NET Integration Testing
 
 This repository houses a collection of reference solutions with the intent of demonstrating how to author integration tests against a .NET HTTP API which may utilise a range of external dependencies.
 
@@ -77,3 +77,7 @@ This project can be considered a base template for all other reference solutions
 ### [Reference B - Entity Framework Core](<./Reference B - Entity Framework Core>)
 
 Integration testing a .NET HTTP API which utilises Entity Framework Core.
+
+### [Reference C - External HTTP API](<./Reference C - External HTTP API>)
+
+Integration testing a .NET HTTP API which utilises an external/third-party HTTP API.
