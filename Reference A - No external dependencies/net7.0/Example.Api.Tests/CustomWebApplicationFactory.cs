@@ -20,7 +20,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
         // set your required application configuration
         builder.ConfigureHostConfiguration(configurationBuilder =>
         {
-            var configuration = new Dictionary<string, string>
+            var configuration = new Dictionary<string, string?>
             {
                 { "", "" },
             };
