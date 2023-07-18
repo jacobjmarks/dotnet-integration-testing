@@ -86,7 +86,6 @@ services.AddHttpClient("My External API Client")
 
 [`./net6.0`](./net6.0)
 
-<!--
 ## .NET 7
 
 [`./net7.0`](./net7.0)
@@ -94,4 +93,3 @@ services.AddHttpClient("My External API Client")
 ## .NET 8
 
 [`./net8.0`](./net8.0)
--->
