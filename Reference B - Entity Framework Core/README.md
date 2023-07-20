@@ -42,11 +42,10 @@ You may also consider mocking the `DbContext`/`DbSet` &mdash; or an internal rep
 
 [`./net6.0`](./net6.0)
 
-<!--
 ## .NET 7
 
 [`./net7.0`](./net7.0)
-
+<!--
 ## .NET 8
 
 [`./net8.0`](./net8.0)
