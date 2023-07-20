@@ -1,5 +1,5 @@
 using System.Net;
-using Azenix.Examples.IntegrationTesting.Api.Tests;
+using Example.Api.Tests;
 
 namespace Example.Api.Tests;
 

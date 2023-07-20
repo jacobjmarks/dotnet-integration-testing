@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 
-namespace Azenix.Examples.IntegrationTesting.Api.Tests;
+namespace Example.Api.Tests;
 
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {

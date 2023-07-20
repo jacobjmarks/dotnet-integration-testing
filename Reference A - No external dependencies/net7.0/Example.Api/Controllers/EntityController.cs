@@ -1,4 +1,4 @@
-﻿using Azenix.Examples.IntegrationTesting.Api.Services;
+﻿using Example.Api.Services;
 using Example.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,4 +1,4 @@
-using Azenix.Examples.IntegrationTesting.Api.Services;
+using Example.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

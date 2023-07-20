@@ -76,7 +76,7 @@ public class EntityController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public ActionResult<Entity> UpdateBook([FromRoute] string id, [FromBody] UpdateEntityRequestBody requestBody)
+    public ActionResult<Entity> UpdateEntity([FromRoute] string id, [FromBody] UpdateEntityRequestBody requestBody)
     {
         if (!_entities.TryGetValue(id, out var entity))
             return NotFound();
