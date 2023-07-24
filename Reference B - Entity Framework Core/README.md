@@ -45,7 +45,7 @@ You may also consider mocking the `DbContext`/`DbSet` &mdash; or an internal rep
 ## .NET 7
 
 [`./net7.0`](./net7.0)
-<!--
+
 ## .NET 8
 
 [`./net8.0`](./net8.0)
@@ -55,4 +55,3 @@ You may also consider mocking the `DbContext`/`DbSet` &mdash; or an internal rep
 #### Time Abstraction
 
 Refer to [Reference A](<../Reference A - No external dependencies>).
--->

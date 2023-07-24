@@ -19,6 +19,7 @@ jobs:
           - Reference A - No external dependencies/net8.0
           - Reference B - Entity Framework Core/net6.0
           - Reference B - Entity Framework Core/net7.0
+          - Reference B - Entity Framework Core/net8.0
           - Reference C - External HTTP API/net6.0
           - Reference C - External HTTP API/net7.0
           - Reference C - External HTTP API/net8.0
