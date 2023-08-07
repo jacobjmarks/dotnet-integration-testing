@@ -17,15 +17,23 @@ public class Tests
         {
             router.MapGet("v1/forecast", async context =>
             {
-                await context.Response.WriteAsJsonAsync(new
-                {
-                    latitude = -27.5,
-                    longitude = 153,
-                    current_weather = new
-                    {
-                        temperature = 23.1,
-                    },
-                });
+                await context.Response.WriteAsync(@"{
+                    ""latitude"": -27.5,
+                    ""longitude"": 153.0,
+                    ""generationtime_ms"": 0.1310110092163086,
+                    ""utc_offset_seconds"": 0,
+                    ""timezone"": ""GMT"",
+                    ""timezone_abbreviation"": ""GMT"",
+                    ""elevation"": 27.0,
+                    ""current_weather"": {
+                        ""temperature"": 21.1,
+                        ""windspeed"": 16.8,
+                        ""winddirection"": 137.0,
+                        ""weathercode"": 3,
+                        ""is_day"": 1,
+                        ""time"": ""2023-08-02T01:00""
+                    }
+                }");
             });
         });
 
