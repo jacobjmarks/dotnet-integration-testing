@@ -1,4 +1,5 @@
 using Example.Api.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -36,6 +37,8 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
         // configure your test services
         builder.ConfigureTestServices(services =>
         {
+            services.AddSingleton<IAuthenticationSchemeProvider, TestAuthenticationSchemeProvider>();
+
             services.Configure<JsonOptions>(options =>
             {
                 options.JsonSerializerOptions.WriteIndented = true;

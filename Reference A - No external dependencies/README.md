@@ -8,6 +8,36 @@ This project aims to provide reference for authoring integration tests against a
 
 The following concerns must be catered for when developing integration tests against the system under test.
 
+## Authentication
+
+There are many methods of authenticating incoming requests to the application. While it is entirely possible to implement integration tests such that these authentication schemes can be fully exercised &mdash; such as a token provided in the header of a request &mdash; an application may utilise multiple different authentication schemes and it may not be entirely feasible to test them in a black-box production-like manner. Instead, the approach we take is to manipulate the *claims* within our identity and allow them to be set on a per-test and/or per-request basis. This removes the scheme-specific concerns of authenticating a request (these should be tested elsewhere) and allows us to assert the behaviour of our application given a manually-defined set of claims.
+
+To support this, we need a couple of things: a manner in which to define one or more claims as part of a HTTP request; and a custom `AuthenticationHandler` to be used by our `WebApplicationFactory` to utilise the claims defined within the incoming HTTP request instead of any other standard authentication schemes which have been registered.
+
+Respectively, we define a set of extension methods to abstract the transport of claims over HTTP (see [`TestAuthenticationHandlerExtensions`](./net6.0/Example.Api.Tests/TestAuthenticationHandlerExtensions.cs)), and define a [`TestAuthenticationHandler`](./net6.0/Example.Api.Tests/TestAuthenticationHandler.cs) to utilise them. We then utilise this handler over others via a custom [`TestAuthenticationSchemeProvider`](./net6.0/Example.Api.Tests/TestAuthenticationSchemeProvider.cs), registered within our `WebApplicationFactory` as below:
+
+``` csharp
+builder.ConfigureTestServices(services =>
+{
+    services.AddSingleton<IAuthenticationSchemeProvider, TestAuthenticationSchemeProvider>();
+});
+```
+
+<sup>[Example.Api.Tests/CustomWebApplicationFactory.cs](./net6.0/Example.Api.Tests/CustomWebApplicationFactory.cs)</sup>
+
+All of this allows us to then define claims for requests within our tests to be utilised by the application as below:
+
+``` csharp
+using var factory = new CustomWebApplicationFactory();
+using var client = factory.CreateClient()
+    .WithClaim(new(ClaimTypes.Name, "John Smith"))
+    .WithClaim(new(ClaimTypes.Email, "john.smith@test.account"));
+```
+
+<sup>[Example.Api.Tests/Tests.cs](./net6.0/Example.Api.Tests/Tests.cs)</sup>
+
+> Note that while the [`Claim`](https://learn.microsoft.com/en-au/dotnet/api/system.security.claims.claim?view=net-6.0) has been used here as the unit with which the developer can set within requests, you can implement an equivalent level of customisability using the same approach at any desired level &mdash; all the way up to the [`AuthenticationTicket`](https://learn.microsoft.com/en-au/dotnet/api/microsoft.aspnetcore.authentication.authenticationticket?view=aspnetcore-6.0) &mdash; depending on your authentication requirements.
+
 ## Date/Time Generation
 
 Retrieving the current date time is a common task within applications yet it can add some complexity when authoring any kind of test against the system, as the value will be changing constantly.

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -35,7 +36,12 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
         // configure your test services
         builder.ConfigureTestServices(services =>
         {
-            services.Configure<JsonOptions>(options => { options.JsonSerializerOptions.WriteIndented = true; });
+            services.AddSingleton<IAuthenticationSchemeProvider, TestAuthenticationSchemeProvider>();
+
+            services.Configure<JsonOptions>(options =>
+            {
+                options.JsonSerializerOptions.WriteIndented = true;
+            });
 
             var mockTimeProvider = new Mock<TimeProvider>();
             mockTimeProvider.Setup(p => p.GetUtcNow()).Returns(DateTimeOffset.Parse("2023-07-06T03:07:00.000Z"));
