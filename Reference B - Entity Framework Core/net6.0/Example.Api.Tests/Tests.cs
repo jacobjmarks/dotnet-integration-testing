@@ -35,11 +35,12 @@ public class Tests
             },
         };
 
-        using var factory = new CustomWebApplicationFactory();
-
+        await using var factory = new CustomWebApplicationFactory();
         using (var scope = factory.Services.CreateScope())
         {
-            using var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            await using var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            dbContext.Database.EnsureDeleted();
+            dbContext.Database.EnsureCreated();
             dbContext.Entities.AddRange(entities);
             dbContext.SaveChanges();
         }

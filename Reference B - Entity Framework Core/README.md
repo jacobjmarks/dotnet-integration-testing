@@ -14,7 +14,32 @@ The following concerns must be catered for when developing integration tests aga
 
 The system under test will utilise Entity Framework Core to connect to a database of choice. This significant infrastructural dependency must be mocked during our integration tests.
 
-We can do so simply by overriding the `DbContextOptions` service to instead utilise EF Core's in-memory database provider, configured within our test framework as below:
+We can do so simply by overriding the `DbContextOptions` service to instead utilise EF Core's SQLite database provider, configured within our test framework as below:
+
+``` csharp
+builder.ConfigureTestServices(services =>
+{
+    services.AddSingleton<SqliteConnection>(_ =>
+    {
+        var connection = new SqliteConnection("Filename=:memory:");
+        connection.Open();
+        return connection;
+    });
+    
+    services.AddSingleton(sp =>
+        new DbContextOptionsBuilder<ApplicationDbContext>()
+            .UseSqlite(sp.GetRequiredService<SqliteConnection>())
+            .Options);
+
+    services.AddScoped<ApplicationDbContext, SqliteDbContext>();
+});
+```
+
+#### Caveat with DateTime, DateTimeOffset, and SQLite
+SQLite does not support `DateTimeOffset` by default, and problems arise when trying to store an object in SQLite with `DateTimeOffset` properties. To work around this, when the SQLite database provider is used, all model properties of type `DateTimeOffset` use the [`DateTimeOffsetToBinaryConverter`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.storage.valueconversion.datetimeoffsettobinaryconverter?view=efcore-7.0) (further details can be seen within the [`SqliteTestDbContext`](./net6.0/Example.Api.Tests/SqliteTestDbContext.cs)).
+
+### In-memory with EFCore
+Alternatively, we can also override the `DbContextOptions` service to instead utilise EF Core's in-memory database provider, configured within our test framework as below:
 
 ``` csharp
 builder.ConfigureTestServices(services =>
