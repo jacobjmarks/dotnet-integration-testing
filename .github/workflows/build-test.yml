@@ -26,6 +26,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Check for changes
+        uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            solution:
+              - '${{ matrix.solution_folder }}/**'
+      - name: Exit if no changes
+        if: steps.filter.outputs.solution != 'true'
+        run: |
+          gh run cancel ${{ github.run_id }}
+          gh run watch ${{ github.run_id }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
