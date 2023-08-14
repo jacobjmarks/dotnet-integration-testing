@@ -4,10 +4,10 @@ version: 2
 updates:
   - package-ecosystem: "nuget"
     directory: "/Reference A - No external dependencies/net6.0"
-    schedule.interval: "daily"
+    schedule: { interval: "daily" }
   - package-ecosystem: "nuget"
     directory: "/Reference A - No external dependencies/net7.0"
-    schedule.interval: "daily"
+    schedule: { interval: "daily" }
   - package-ecosystem: "nuget"
     directory: "/Reference A - No external dependencies/net8.0"
-    schedule.interval: "daily"
+    schedule: { interval: "daily" }
