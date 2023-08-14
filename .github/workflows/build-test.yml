@@ -28,29 +28,26 @@ jobs:
       - uses: actions/checkout@v3
       - name: Check for changes
         uses: dorny/paths-filter@v2
-        id: filter
+        id: changes
         with:
           filters: |
             solution:
               - '${{ matrix.solution_folder }}/**'
-      - name: Exit if no changes
-        if: steps.filter.outputs.solution != 'true'
-        run: |
-          gh run cancel ${{ github.run_id }}
-          gh run watch ${{ github.run_id }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup .NET
+        if: steps.changes.outputs.solution == 'true'
         uses: actions/setup-dotnet@v3
         with:
           global-json-file: ${{ matrix.solution_folder }}/global.json
       - name: Restore dependencies
+        if: steps.changes.outputs.solution == 'true'
         working-directory: ${{ matrix.solution_folder }}
         run: dotnet restore
       - name: Build
+        if: steps.changes.outputs.solution == 'true'
         working-directory: ${{ matrix.solution_folder }}
         run: dotnet build --no-restore
       - name: Test
+        if: steps.changes.outputs.solution == 'true'
         working-directory: ${{ matrix.solution_folder }}
         run: dotnet test --no-build --verbosity normal
         env:
