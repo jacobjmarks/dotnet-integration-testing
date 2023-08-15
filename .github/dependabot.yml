@@ -2,6 +2,7 @@
 
 version: 2
 updates:
+  # Reference A - No external dependencies
   - package-ecosystem: "nuget"
     directory: "/Reference A - No external dependencies/net6.0"
     schedule: { interval: "weekly" }
@@ -22,7 +23,7 @@ updates:
     schedule: { interval: "weekly" }
     groups: { dependencies: { patterns: ["*"] } }
 
-
+  # Reference C - External HTTP API
   - package-ecosystem: "nuget"
     directory: "/Reference C - External HTTP API/net6.0"
     schedule: { interval: "weekly" }
