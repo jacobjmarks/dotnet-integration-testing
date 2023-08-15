@@ -5,6 +5,11 @@ updates:
   - package-ecosystem: "nuget"
     directory: "/Reference A - No external dependencies/net6.0"
     schedule: { interval: "daily" }
+    ignore:
+      - dependency-name: "Microsoft.AspNetCore.Authentication.JwtBearer"
+        versions: ["7.*"]
+      - dependency-name: "Microsoft.AspNetCore.Mvc.Testing"
+        versions: ["7.*"]
   - package-ecosystem: "nuget"
     directory: "/Reference A - No external dependencies/net7.0"
     schedule: { interval: "daily" }
