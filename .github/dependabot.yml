@@ -4,7 +4,7 @@ version: 2
 updates:
   - package-ecosystem: "nuget"
     directory: "/Reference A - No external dependencies/net6.0"
-    schedule: { interval: "daily" }
+    schedule: { interval: "weekly" }
     ignore:
       - dependency-name: "Microsoft.AspNetCore.Authentication.JwtBearer"
         versions: ["[7,)"]
@@ -12,20 +12,20 @@ updates:
         versions: ["[7,)"]
   - package-ecosystem: "nuget"
     directory: "/Reference A - No external dependencies/net7.0"
-    schedule: { interval: "daily" }
+    schedule: { interval: "weekly" }
   - package-ecosystem: "nuget"
     directory: "/Reference A - No external dependencies/net8.0"
-    schedule: { interval: "daily" }
+    schedule: { interval: "weekly" }
 
   - package-ecosystem: "nuget"
     directory: "/Reference C - External HTTP API/net6.0"
-    schedule: { interval: "daily" }
+    schedule: { interval: "weekly" }
     ignore:
       - dependency-name: "Microsoft.AspNetCore.Mvc.Testing"
         versions: ["[7,)"]
   - package-ecosystem: "nuget"
     directory: "/Reference C - External HTTP API/net7.0"
-    schedule: { interval: "daily" }
+    schedule: { interval: "weekly" }
   - package-ecosystem: "nuget"
     directory: "/Reference C - External HTTP API/net8.0"
-    schedule: { interval: "daily" }
+    schedule: { interval: "weekly" }
