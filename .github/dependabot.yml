@@ -23,6 +23,26 @@ updates:
     schedule: { interval: "weekly" }
     groups: { dependencies: { patterns: ["*"] } }
 
+  # Reference B - Entity Framework Core
+  - package-ecosystem: "nuget"
+    directory: "/Reference B - Entity Framework Core/net6.0"
+    schedule: { interval: "weekly" }
+    groups: { dependencies: { patterns: ["*"] } }
+    ignore:
+      - dependency-name: "Microsoft.AspNetCore.Mvc.Testing"
+        versions: ["[7,)"]
+
+  - package-ecosystem: "nuget"
+    directory: "/Reference B - Entity Framework Core/net7.0"
+    schedule: { interval: "weekly" }
+    groups: { dependencies: { patterns: ["*"] } }
+
+  - package-ecosystem: "nuget"
+    directory: "/Reference B - Entity Framework Core/net8.0"
+    schedule: { interval: "weekly" }
+    groups: { dependencies: { patterns: ["*"] } }
+
+
   # Reference C - External HTTP API
   - package-ecosystem: "nuget"
     directory: "/Reference C - External HTTP API/net6.0"
