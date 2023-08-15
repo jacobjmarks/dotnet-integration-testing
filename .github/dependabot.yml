@@ -16,3 +16,16 @@ updates:
   - package-ecosystem: "nuget"
     directory: "/Reference A - No external dependencies/net8.0"
     schedule: { interval: "daily" }
+
+  - package-ecosystem: "nuget"
+    directory: "/Reference C - External HTTP API/net6.0"
+    schedule: { interval: "daily" }
+    ignore:
+      - dependency-name: "Microsoft.AspNetCore.Mvc.Testing"
+        versions: ["[7,)"]
+  - package-ecosystem: "nuget"
+    directory: "/Reference C - External HTTP API/net7.0"
+    schedule: { interval: "daily" }
+  - package-ecosystem: "nuget"
+    directory: "/Reference C - External HTTP API/net8.0"
+    schedule: { interval: "daily" }
