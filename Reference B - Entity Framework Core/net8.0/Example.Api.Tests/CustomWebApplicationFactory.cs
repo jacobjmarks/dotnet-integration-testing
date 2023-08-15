@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,10 +37,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
         // configure your test services
         builder.ConfigureTestServices(services =>
         {
-            services.Configure<JsonOptions>(options =>
-            {
-                options.JsonSerializerOptions.WriteIndented = true;
-            });
+            services.Configure<JsonOptions>(options => { options.JsonSerializerOptions.WriteIndented = true; });
 
             var mockTimeProvider = new Mock<TimeProvider>();
             mockTimeProvider.Setup(p => p.GetUtcNow()).Returns(DateTimeOffset.Parse("2023-07-06T03:07:00.000Z"));
@@ -47,10 +45,38 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
             services.RemoveAll<TimeProvider>();
             services.AddSingleton(mockTimeProvider.Object);
 
-            services.RemoveAll<DbContextOptions<ApplicationDbContext>>();
-            services.AddSingleton(new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
-                .Options);
+            AddSqliteTestDbContext(services);
+            // or
+            // AddInMemoryTestDbContext(services);
         });
+    }
+
+    private void AddSqliteTestDbContext(IServiceCollection services)
+    {
+        services.RemoveAll<DbContextOptions<ApplicationDbContext>>();
+        services.RemoveAll<ApplicationDbContext>();
+        
+        services.AddSingleton<SqliteConnection>(_ =>
+        {
+            var connection = new SqliteConnection("Filename=:memory:");
+            connection.Open();
+            return connection;
+        });
+        
+        services.AddSingleton(sp =>
+            new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseSqlite(sp.GetRequiredService<SqliteConnection>())
+                .Options);
+
+        services.AddScoped<ApplicationDbContext, SqliteTestDbContext>();
+    }
+
+    private void AddInMemoryTestDbContext(IServiceCollection services)
+    {
+        services.RemoveAll<DbContextOptions<ApplicationDbContext>>();
+        
+        services.AddSingleton(new DbContextOptionsBuilder<ApplicationDbContext>()
+            .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
+            .Options);
     }
 }
