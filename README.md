@@ -1,4 +1,4 @@
-# Solution Accelerator: .NET Integration Testing
+# .NET Integration Testing
 
 This repository houses a collection of reference solutions with the intent of demonstrating how to author integration tests against a .NET HTTP API which may utilise a range of external dependencies.
 
