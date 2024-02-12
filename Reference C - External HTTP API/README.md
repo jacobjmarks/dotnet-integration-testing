@@ -65,7 +65,7 @@ using var factory = new CustomWebApplicationFactory()
     {
         builder.ConfigureTestServices(services =>
         {
-            services.AddHttpClient("My External API Client", _ => testServer.CreateClient())
+            services.AddHttpClient("My External API Client")
                 .ConfigurePrimaryHttpMessageHandler(_ => testServer.CreateHandler());
         });
     });
